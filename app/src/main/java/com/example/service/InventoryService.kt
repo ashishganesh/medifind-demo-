@@ -18,6 +18,11 @@ class InventoryService {
     private val _availabilityLogs = MutableStateFlow<List<AvailabilityLog>>(MockData.initialAvailabilityLogs)
     val availabilityLogs: StateFlow<List<AvailabilityLog>> = _availabilityLogs.asStateFlow()
 
+    fun resetToBaseline() {
+        _inventory.value = MockData.initialInventory
+        _availabilityLogs.value = MockData.initialAvailabilityLogs
+    }
+
     fun updateStock(
         recordId: String,
         newCount: Int,

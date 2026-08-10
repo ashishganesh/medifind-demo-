@@ -177,7 +177,7 @@ fun UserHomeScreen(
                         tint = MediBluePrimary
                     )
                     Text(
-                        text = "Availability shown in this prototype is demonstration data for SIH 2024 testing.",
+                        text = "Availability shown in this prototype is demonstration data for SIH 2026 testing.",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onPrimaryContainer,
                         fontSize = 12.sp

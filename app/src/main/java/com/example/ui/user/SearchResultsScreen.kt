@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.model.UserLocation
 import com.example.ui.components.EmptyState
+import com.example.ui.components.GorakhpurInteractiveMap
 import com.example.ui.components.LocationSelectorBar
 import com.example.ui.components.StatusBadge
 import com.example.ui.theme.MediBluePrimary
@@ -121,104 +122,27 @@ fun SearchResultsScreen(
             }
         }
 
-        // Map Area Placeholder
+        // Gorakhpur Interactive Map with Pharmacy Markers
         item {
-            Card(
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                shape = RoundedCornerShape(12.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(14.dp)
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Map,
-                                contentDescription = "Map View",
-                                tint = MediBluePrimary
-                            )
-                            Text(
-                                text = "Proximity Radar View",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp
-                            )
-                        }
-
-                        Text(
-                            text = "📍 ${userLocation.areaName}",
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = MediBluePrimary
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    // Radar Canvas
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(110.dp)
-                            .background(Color(0xFFE2E8F0), RoundedCornerShape(8.dp))
-                            .padding(12.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        // User location pulse
-                        Box(
-                            modifier = Modifier
-                                .size(26.dp)
-                                .background(MediBluePrimary, CircleShape),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.MyLocation,
-                                contentDescription = "Your Location",
-                                tint = Color.White,
-                                modifier = Modifier.size(16.dp)
-                            )
-                        }
-
-                        // Pins
-                        Box(
-                            modifier = Modifier
-                                .offset(x = (-60).dp, y = (-20).dp)
-                                .background(Color(0xFF15803D), CircleShape)
-                                .size(20.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text("1", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                        }
-
-                        Box(
-                            modifier = Modifier
-                                .offset(x = (60).dp, y = (25).dp)
-                                .background(Color(0xFF15803D), CircleShape)
-                                .size(20.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text("2", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                        }
-
-                        Text(
-                            text = "Haversine Proximity calculated from ${userLocation.areaName}",
-                            fontSize = 10.sp,
-                            color = Color.DarkGray,
-                            modifier = Modifier.align(Alignment.BottomEnd)
-                        )
+            GorakhpurInteractiveMap(
+                pharmacies = results.map { it.pharmacy },
+                inventory = results.map { it.inventory },
+                selectedMedicineId = results.firstOrNull()?.medicine?.id,
+                selectedMedicineName = results.firstOrNull()?.medicine?.name ?: query,
+                userLocation = userLocation,
+                onPharmacySelect = { pharmacyId ->
+                    onPharmacyClick(pharmacyId)
+                },
+                onPharmacyDetailsClick = { pharmacyId ->
+                    onPharmacyClick(pharmacyId)
+                },
+                onDirectionsClick = { pharmacyId ->
+                    val pharm = results.find { it.pharmacy.id == pharmacyId }?.pharmacy
+                    if (pharm != null) {
+                        onDirectionsClick(pharm.latitude, pharm.longitude, pharm.name)
                     }
                 }
-            }
+            )
         }
 
         // Sort Options

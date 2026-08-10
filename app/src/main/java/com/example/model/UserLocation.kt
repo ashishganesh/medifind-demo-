@@ -15,10 +15,10 @@ enum class LocationStatus {
 }
 
 data class UserLocation(
-    val areaName: String = "Gomti Nagar",
-    val cityName: String = "Lucknow",
-    val latitude: Double = 26.8526,
-    val longitude: Double = 80.9927,
+    val areaName: String = "Civil Lines (DDUGU)",
+    val cityName: String = "Gorakhpur",
+    val latitude: Double = 26.7558,
+    val longitude: Double = 83.3735,
     val source: LocationSource = LocationSource.DEMO,
     val status: LocationStatus = LocationStatus.AVAILABLE,
     val errorMessage: String? = null

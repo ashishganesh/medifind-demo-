@@ -11,19 +11,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.data.DemoLocations
 import com.example.model.Pharmacy
+import com.example.model.UserLocation
+import com.example.ui.components.GorakhpurInteractiveMap
 import com.example.ui.components.PharmacyCard
 import com.example.ui.components.SearchBar
 
 @Composable
 fun PharmacyListScreen(
     pharmacies: List<Pharmacy>,
+    userLocation: UserLocation = UserLocation(
+        latitude = DemoLocations.defaultLocation.latitude,
+        longitude = DemoLocations.defaultLocation.longitude,
+        areaName = DemoLocations.defaultLocation.areaName,
+        cityName = DemoLocations.defaultLocation.cityName
+    ),
     onPharmacyClick: (String) -> Unit,
     onDirectionsClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var query by remember { mutableStateOf("") }
     var selectedFacilityType by remember { mutableStateOf("All") }
+    var selectedMapPharmacyId by remember { mutableStateOf<String?>(null) }
 
     val filteredPharmacies = remember(pharmacies, query, selectedFacilityType) {
         pharmacies.filter { p ->
@@ -45,7 +55,7 @@ fun PharmacyListScreen(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Explore dispensaries, retail chemists, and Jan Aushadhi Kendras in Lucknow.",
+                text = "Explore dispensaries, retail chemists, and Jan Aushadhi Kendras in Gorakhpur, UP.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -78,6 +88,23 @@ fun PharmacyListScreen(
                     }
                 }
             }
+        }
+
+        item {
+            GorakhpurInteractiveMap(
+                pharmacies = filteredPharmacies,
+                userLocation = userLocation,
+                selectedPharmacyId = selectedMapPharmacyId,
+                onPharmacySelect = { pharmacyId ->
+                    selectedMapPharmacyId = pharmacyId
+                },
+                onPharmacyDetailsClick = { pharmacyId ->
+                    onPharmacyClick(pharmacyId)
+                },
+                onDirectionsClick = { pharmacyId ->
+                    onDirectionsClick(pharmacyId)
+                }
+            )
         }
 
         items(filteredPharmacies) { pharmacy ->

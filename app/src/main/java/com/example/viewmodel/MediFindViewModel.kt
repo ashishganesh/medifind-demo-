@@ -70,7 +70,7 @@ class MediFindViewModel(
 
     val currentUserLocation: StateFlow<UserLocation> = locationService.userLocation
 
-    val userLocation: StateFlow<String> = MutableStateFlow("📍 Gomti Nagar, Lucknow")
+    val userLocation: StateFlow<String> = MutableStateFlow("📍 Civil Lines (DDUGU), Gorakhpur")
 
     private val _toastMessage = MutableStateFlow<String?>(null)
     val toastMessage: StateFlow<String?> = _toastMessage.asStateFlow()
@@ -382,6 +382,19 @@ class MediFindViewModel(
             availabilityFilter = _availabilityFilter.value,
             sortBy = _sortBy.value
         )
+    }
+
+    fun resetDemoData() {
+        inventoryService.resetToBaseline()
+        verifiedAlternativeService.resetToBaseline()
+        locationService.setDemoLocation(com.example.data.DemoLocations.defaultLocation)
+        _searchQuery.value = "Paracetamol 500mg"
+        _selectedCategory.value = "All"
+        _selectedFacilityType.value = "All"
+        _maxDistanceKm.value = 5.0
+        _availabilityFilter.value = "All"
+        _sortBy.value = "Nearest"
+        _toastMessage.value = "SIH Demo Data has been reset to baseline state!"
     }
 }
 

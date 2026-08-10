@@ -197,8 +197,7 @@ fun LocationSelectionModalDialog(
                             )
                             Button(
                                 onClick = {
-                                    // Use default Lucknow coordinates if custom entered
-                                    onSelectManualLocation(manualArea, manualCity, 26.8526, 80.9927)
+                                    onSelectManualLocation(manualArea, manualCity, 26.7606, 83.3732)
                                     onDismiss()
                                 },
                                 modifier = Modifier.fillMaxWidth(),
@@ -223,9 +222,10 @@ fun LocationSelectionModalDialog(
                                 modifier = Modifier.size(40.dp)
                             )
                             Text(
-                                text = "Obtain current position via Browser Geolocation API.",
+                                text = "Allow MediFind to use your location to find nearby pharmacies.",
                                 fontSize = 12.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                fontWeight = FontWeight.Medium,
+                                color = MaterialTheme.colorScheme.onSurface
                             )
                             Button(
                                 onClick = {
@@ -235,7 +235,7 @@ fun LocationSelectionModalDialog(
                                 shape = RoundedCornerShape(8.dp),
                                 modifier = Modifier.fillMaxWidth()
                             ) {
-                                Text("Request GPS Coordinates")
+                                Text("Use My Location")
                             }
                         }
                     }

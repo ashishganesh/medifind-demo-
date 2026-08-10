@@ -63,12 +63,42 @@ fun PharmacyCard(
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     if (pharmacy.isVerified) {
-                        Icon(
-                            imageVector = Icons.Default.Verified,
-                            contentDescription = "Verified Pharmacy",
-                            tint = MediBluePrimary,
-                            modifier = Modifier.size(16.dp)
-                        )
+                        Surface(
+                            color = Color(0xFFDCFCE7),
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Verified,
+                                    contentDescription = "MediFind Verified",
+                                    tint = Color(0xFF15803D),
+                                    modifier = Modifier.size(12.dp)
+                                )
+                                Spacer(modifier = Modifier.width(2.dp))
+                                Text(
+                                    text = "MediFind Verified",
+                                    fontSize = 9.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF15803D)
+                                )
+                            }
+                        }
+                    } else {
+                        Surface(
+                            color = Color(0xFFF1F5F9),
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
+                            Text(
+                                text = "Map Listed",
+                                fontSize = 9.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color(0xFF64748B),
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
+                            )
+                        }
                     }
                 }
 
@@ -94,6 +124,22 @@ fun PharmacyCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1
             )
+
+            if (!pharmacy.isVerified) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Surface(
+                    color = Color(0xFFFEF3C7),
+                    shape = RoundedCornerShape(4.dp)
+                ) {
+                    Text(
+                        text = "⚠️ Inventory unavailable (Map Listed Place)",
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xFFD97706),
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 

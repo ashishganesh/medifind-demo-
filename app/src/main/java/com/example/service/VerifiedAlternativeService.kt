@@ -15,6 +15,10 @@ class VerifiedAlternativeService {
     private val _alternatives = MutableStateFlow<List<VerifiedAlternative>>(DemoAlternatives.demoAlternatives)
     val alternatives: StateFlow<List<VerifiedAlternative>> = _alternatives.asStateFlow()
 
+    fun resetToBaseline() {
+        _alternatives.value = DemoAlternatives.demoAlternatives
+    }
+
     private fun getCurrentDateString(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         return sdf.format(Date())

@@ -5,12 +5,44 @@ import com.example.model.DemoLocationOption
 object DemoLocations {
     val options = listOf(
         DemoLocationOption(
-            id = "demo_lucknow_gomti",
-            label = "Lucknow — Gomti Nagar",
-            areaName = "Gomti Nagar",
-            cityName = "Lucknow",
-            latitude = 26.8526,
-            longitude = 80.9927
+            id = "demo_ddugu_university",
+            label = "SIH Demo Area — DDU Gorakhpur University",
+            areaName = "Civil Lines (DDUGU)",
+            cityName = "Gorakhpur",
+            latitude = 26.7558,
+            longitude = 83.3735
+        ),
+        DemoLocationOption(
+            id = "demo_gorakhpur_golghar",
+            label = "Gorakhpur — Golghar Market",
+            areaName = "Golghar",
+            cityName = "Gorakhpur",
+            latitude = 26.7606,
+            longitude = 83.3732
+        ),
+        DemoLocationOption(
+            id = "demo_gorakhpur_townhall",
+            label = "Gorakhpur — Town Hall & Civil Lines",
+            areaName = "Town Hall Road",
+            cityName = "Gorakhpur",
+            latitude = 26.7630,
+            longitude = 83.3690
+        ),
+        DemoLocationOption(
+            id = "demo_gorakhpur_medical",
+            label = "Gorakhpur — BRD Medical College",
+            areaName = "Medical College Road",
+            cityName = "Gorakhpur",
+            latitude = 26.7820,
+            longitude = 83.3850
+        ),
+        DemoLocationOption(
+            id = "demo_gorakhpur_mohaddipur",
+            label = "Gorakhpur — Mohaddipur",
+            areaName = "Mohaddipur",
+            cityName = "Gorakhpur",
+            latitude = 26.7550,
+            longitude = 83.3910
         ),
         DemoLocationOption(
             id = "demo_lucknow_hazratganj",
@@ -19,40 +51,9 @@ object DemoLocations {
             cityName = "Lucknow",
             latitude = 26.8467,
             longitude = 80.9462
-        ),
-        DemoLocationOption(
-            id = "demo_lucknow_aliganj",
-            label = "Lucknow — Aliganj",
-            areaName = "Aliganj",
-            cityName = "Lucknow",
-            latitude = 26.8920,
-            longitude = 80.9442
-        ),
-        DemoLocationOption(
-            id = "demo_lucknow_chowk",
-            label = "Lucknow — Chowk Old City",
-            areaName = "Chowk",
-            cityName = "Lucknow",
-            latitude = 26.8682,
-            longitude = 80.9129
-        ),
-        DemoLocationOption(
-            id = "demo_gorakhpur_centre",
-            label = "Gorakhpur — City Centre",
-            areaName = "Golghar",
-            cityName = "Gorakhpur",
-            latitude = 26.7606,
-            longitude = 83.3732
-        ),
-        DemoLocationOption(
-            id = "demo_varanasi_cantt",
-            label = "Varanasi — Cantt Railway Station",
-            areaName = "Cantt",
-            cityName = "Varanasi",
-            latitude = 25.3217,
-            longitude = 82.9873
         )
     )
 
-    val defaultLocation = options[0] // Gomti Nagar, Lucknow
+    val defaultLocation = options[0] // SIH Demo Area — DDU Gorakhpur University
 }
+

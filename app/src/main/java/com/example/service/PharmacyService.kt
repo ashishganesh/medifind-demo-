@@ -68,8 +68,8 @@ class PharmacyService {
         facilityType: String = "All",
         maxDistanceKm: Double = 10.0,
         onlyVerified: Boolean = false,
-        userLat: Double = 26.8526,
-        userLon: Double = 80.9927
+        userLat: Double = 26.7558,
+        userLon: Double = 83.3735
     ): List<Pharmacy> {
         return _pharmacies.value.map { p ->
             val dist = com.example.utils.DistanceUtils.calculateDistanceKm(userLat, userLon, p.latitude, p.longitude)

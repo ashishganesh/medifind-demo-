@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Science
 import androidx.compose.material.icons.filled.SwapHoriz
 import androidx.compose.material3.*
@@ -22,6 +23,7 @@ import com.example.ui.theme.MediBluePrimary
 fun SihDemoBanner(
     currentRole: UserRole,
     onRoleSelected: (UserRole) -> Unit,
+    onResetDemoData: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -56,26 +58,46 @@ fun SihDemoBanner(
                         fontSize = 12.sp,
                         color = Color(0xFFFDE047)
                     )
-                    Surface(
-                        color = Color.White.copy(alpha = 0.2f),
-                        shape = RoundedCornerShape(4.dp)
-                    ) {
-                        Text(
-                            text = "Demo Mode — Sample Data",
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Medium,
-                            color = Color.White,
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
-                    }
                 }
 
-                Text(
-                    text = "Switch View:",
-                    fontSize = 11.sp,
-                    color = Color.White.copy(alpha = 0.8f),
-                    fontWeight = FontWeight.Medium
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    if (onResetDemoData != null) {
+                        Surface(
+                            onClick = onResetDemoData,
+                            color = Color.White.copy(alpha = 0.2f),
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(3.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Refresh,
+                                    contentDescription = "Reset Demo Data",
+                                    tint = Color.White,
+                                    modifier = Modifier.size(12.dp)
+                                )
+                                Text(
+                                    text = "Reset Demo Data",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.White
+                                )
+                            }
+                        }
+                    }
+
+                    Text(
+                        text = "Switch View:",
+                        fontSize = 11.sp,
+                        color = Color.White.copy(alpha = 0.8f),
+                        fontWeight = FontWeight.Medium
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(4.dp))

@@ -131,7 +131,8 @@ fun MediFindApp(
             Column {
                 SihDemoBanner(
                     currentRole = currentRole,
-                    onRoleSelected = { viewModel.switchDemoRole(it) }
+                    onRoleSelected = { viewModel.switchDemoRole(it) },
+                    onResetDemoData = { viewModel.resetDemoData() }
                 )
                 if (!isAuthScreen) {
                     AppHeader(
@@ -375,6 +376,7 @@ fun MediFindApp(
                 composable(Screen.UserPharmacies.route) {
                     PharmacyListScreen(
                         pharmacies = pharmacies,
+                        userLocation = currentUserLocation,
                         onPharmacyClick = { id -> navController.navigate("user_pharmacy_details/$id") },
                         onDirectionsClick = { pharmId ->
                             val targetPharm = pharmacies.find { it.id == pharmId }
