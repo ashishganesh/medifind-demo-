@@ -1,0 +1,91 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isRole(role) {
+      return isAuthenticated() && getUserData().role == role;
+    }
+
+    function isPharmacyOwner(pharmacyId) {
+      return isRole('PHARMACY') && getUserData().pharmacyId == pharmacyId;
+    }
+
+    // Medicine Master Catalog Security
+    match /medicines/{medicineId} {
+      allow read: if true;
+      allow write: if isRole('ADMIN');
+    }
+
+    // Pharmacy Store Registry Security
+    match /pharmacies/{pharmacyId} {
+      allow read: if true;
+      allow create: if isRole('ADMIN') || (
+        isRole('PHARMACY') && request.resource.data.isVerified == false
+      );
+      allow update: if isRole('ADMIN') || (
+        isPharmacyOwner(pharmacyId) && request.resource.data.isVerified == resource.data.isVerified
+      );
+      allow delete: if isRole('ADMIN');
+    }
+
+    // Inventory Stock Security
+    match /inventory/{inventoryId} {
+      allow read: if true;
+      allow create, update: if isRole('ADMIN') || (
+        isRole('PHARMACY') && request.resource.data.pharmacyId == getUserData().pharmacyId
+      );
+      allow delete: if isRole('ADMIN');
+    }
+
+    // Availability Audit Log Security
+    match /availabilityLogs/{logId} {
+      allow read: if isRole('ADMIN') || isRole('PHARMACY');
+      allow create: if isAuthenticated();
+      allow update, delete: if isRole('ADMIN');
+    }
+
+    // User Accounts Security & Role Immutability
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      
+      // Prevent client-side creation of ADMIN role
+      allow create: if isAuthenticated() && (
+        isRole('ADMIN') || (
+          request.auth.uid == userId && 
+          request.resource.data.role != 'ADMIN'
+        )
+      );
+
+      // Prevent role modification during profile update
+      allow update: if isRole('ADMIN') || (
+        request.auth.uid == userId && 
+        request.resource.data.role == resource.data.role
+      );
+
+      allow delete: if isRole('ADMIN');
+    }
+
+    // Search History Logs
+    match /searchHistory/{historyId} {
+      allow read, create: if isAuthenticated();
+      allow update, delete: if isRole('ADMIN');
+    }
+
+    // Verified Alternative Medicine System Security
+    match /verifiedAlternatives/{alternativeId} {
+      // Public / Patient read allowed ONLY for VERIFIED mappings. Admins can read all statuses.
+      allow read: if isRole('ADMIN') || resource.data.verificationStatus == 'VERIFIED';
+      // Only State Health Administrators can CREATE, UPDATE, or DELETE alternative mappings
+      allow create, update, delete: if isRole('ADMIN');
+    }
+  }
+}

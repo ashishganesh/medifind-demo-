@@ -1,0 +1,6 @@
+{
+  "name": "MediFind",
+  "description": "Medicine availability discovery platform to find nearby verified pharmacies and health facilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
