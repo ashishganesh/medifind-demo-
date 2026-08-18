@@ -31,10 +31,11 @@ fun NotificationAlert(
     ) {
         if (message != null) {
             Surface(
-                color = Color(0xFF1E293B),
-                contentColor = Color.White,
+                color = Color(0xFFEFF6FF),
+                contentColor = Color(0xFF1E3A8A),
                 shape = RoundedCornerShape(12.dp),
-                shadowElevation = 6.dp,
+                shadowElevation = 4.dp,
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFBFDBFE)),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
@@ -47,6 +48,7 @@ fun NotificationAlert(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Row(
+                        modifier = Modifier.weight(1f, fill = false),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
@@ -59,11 +61,12 @@ fun NotificationAlert(
                         Text(
                             text = message,
                             fontSize = 13.sp,
-                            fontWeight = FontWeight.Medium
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color(0xFF1E293B)
                         )
                     }
                     TextButton(onClick = onDismiss) {
-                        Text("OK", color = Color(0xFF60A5FA), fontWeight = FontWeight.Bold)
+                        Text("OK", color = com.example.ui.theme.MediBluePrimary, fontWeight = FontWeight.Bold)
                     }
                 }
             }

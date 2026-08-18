@@ -86,7 +86,7 @@ fun SearchMedicineScreen(
             ) {
                 Icon(imageVector = Icons.Default.Search, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Search Stock in Nearby Pharmacies", fontWeight = FontWeight.Bold)
+                Text("Search Stock in Nearby Pharmacies", fontWeight = FontWeight.Bold, maxLines = 1, softWrap = false)
             }
         }
 

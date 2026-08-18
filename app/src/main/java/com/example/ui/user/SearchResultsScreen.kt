@@ -233,7 +233,10 @@ fun SearchResultsScreen(
                                     Text(
                                         text = result.pharmacy.name,
                                         style = MaterialTheme.typography.titleMedium,
-                                        fontWeight = FontWeight.Bold
+                                        fontWeight = FontWeight.Bold,
+                                        maxLines = 1,
+                                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                                        modifier = Modifier.weight(1f, fill = false)
                                     )
                                 }
                                 Text(
@@ -300,7 +303,7 @@ fun SearchResultsScreen(
                                 shape = RoundedCornerShape(8.dp),
                                 modifier = Modifier.weight(1f)
                             ) {
-                                Text("View Store Inventory", fontSize = 12.sp)
+                                Text("View Store Inventory", fontSize = 12.sp, maxLines = 1, softWrap = false)
                             }
 
                             Button(
@@ -320,7 +323,7 @@ fun SearchResultsScreen(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
-                                Text("Directions", fontSize = 12.sp)
+                                Text("Directions", fontSize = 12.sp, maxLines = 1, softWrap = false)
                             }
                         }
                     }

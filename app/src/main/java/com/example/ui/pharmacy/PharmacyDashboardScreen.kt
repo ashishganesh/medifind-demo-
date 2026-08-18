@@ -311,7 +311,7 @@ fun PharmacyDashboardScreen(
                     ) {
                         Icon(imageVector = Icons.Default.Analytics, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Open Forecasting & Stock-Out Engine", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                        Text("Open Forecasting & Stock-Out Engine", fontWeight = FontWeight.Bold, fontSize = 12.sp, maxLines = 1, softWrap = false)
                     }
                 }
             }
@@ -356,7 +356,9 @@ fun PharmacyDashboardScreen(
                             Text(
                                 text = med.name,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp
+                                fontSize = 14.sp,
+                                maxLines = 1,
+                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                             )
                             Text(
                                 text = "Current Units: ${record.stockCount} • ₹${record.unitPriceRupees}",

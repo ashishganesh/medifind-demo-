@@ -61,7 +61,9 @@ fun StockPredictionCard(
                         Text(
                             text = prediction.medicineName,
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                         )
                     }
                     Text(
@@ -215,7 +217,7 @@ fun StockPredictionCard(
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(if (showChart) "Hide Stock Chart" else "Show Historical Chart", fontSize = 12.sp)
+                    Text(if (showChart) "Hide Stock Chart" else "Show Historical Chart", fontSize = 12.sp, maxLines = 1, softWrap = false)
                 }
 
                 OutlinedButton(
@@ -223,7 +225,7 @@ fun StockPredictionCard(
                     shape = RoundedCornerShape(8.dp),
                     contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp)
                 ) {
-                    Text("Update Stock", fontSize = 11.sp)
+                    Text("Update Stock", fontSize = 11.sp, maxLines = 1, softWrap = false)
                 }
             }
 

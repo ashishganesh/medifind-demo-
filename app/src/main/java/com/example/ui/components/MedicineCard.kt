@@ -62,12 +62,16 @@ fun MedicineCard(
                         text = medicine.name,
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                     )
                     Text(
                         text = "Generic: ${medicine.genericName}",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                     )
 
                     Spacer(modifier = Modifier.height(4.dp))
@@ -78,7 +82,14 @@ fun MedicineCard(
                     ) {
                         SuggestionChip(
                             onClick = {},
-                            label = { Text(medicine.category, fontSize = 10.sp) },
+                            label = {
+                                Text(
+                                    text = medicine.category,
+                                    fontSize = 10.sp,
+                                    maxLines = 1,
+                                    softWrap = false
+                                )
+                            },
                             modifier = Modifier.height(24.dp)
                         )
                         if (medicine.requiresPrescription) {
@@ -101,7 +112,9 @@ fun MedicineCard(
                                         text = "Rx Required",
                                         fontSize = 9.sp,
                                         color = MaterialTheme.colorScheme.onErrorContainer,
-                                        fontWeight = FontWeight.Bold
+                                        fontWeight = FontWeight.Bold,
+                                        maxLines = 1,
+                                        softWrap = false
                                     )
                                 }
                             }

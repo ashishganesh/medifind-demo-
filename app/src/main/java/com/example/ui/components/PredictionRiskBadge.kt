@@ -42,7 +42,9 @@ fun PredictionRiskBadge(
                 text = labelText,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = textColor
+                color = textColor,
+                maxLines = 1,
+                softWrap = false
             )
         }
     }

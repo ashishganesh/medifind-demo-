@@ -36,7 +36,7 @@ fun AlternativeMedicinesScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Verified Alternatives", fontWeight = FontWeight.Bold) },
+                title = { Text("Verified Alternatives", fontWeight = FontWeight.Bold, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")

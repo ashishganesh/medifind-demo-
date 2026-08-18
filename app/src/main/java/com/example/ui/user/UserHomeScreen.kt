@@ -84,7 +84,9 @@ fun UserHomeScreen(
                                     text = "📍 ${userLocation.displayLabel} • Change",
                                     fontSize = 12.sp,
                                     color = Color.White,
-                                    fontWeight = FontWeight.Bold
+                                    fontWeight = FontWeight.Bold,
+                                    maxLines = 1,
+                                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                                 )
                             }
                         }
@@ -139,7 +141,7 @@ fun UserHomeScreen(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Find Medicine", fontWeight = FontWeight.Bold)
+                                Text("Find Medicine", fontWeight = FontWeight.Bold, maxLines = 1, softWrap = false)
                             }
 
                             OutlinedButton(
@@ -149,7 +151,7 @@ fun UserHomeScreen(
                                 shape = RoundedCornerShape(10.dp),
                                 modifier = Modifier.weight(1f)
                             ) {
-                                Text("Explore Pharmacies", fontSize = 12.sp)
+                                Text("Explore Pharmacies", fontSize = 12.sp, maxLines = 1, softWrap = false)
                             }
                         }
                     }

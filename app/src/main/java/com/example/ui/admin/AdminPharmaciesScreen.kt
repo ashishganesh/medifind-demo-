@@ -112,7 +112,9 @@ fun AdminPharmaciesScreen(
                                 Text(
                                     text = pharmacy.name,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 15.sp
+                                    fontSize = 15.sp,
+                                    maxLines = 1,
+                                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                                 )
                                 Text(
                                     text = "${pharmacy.facilityType} • ${pharmacy.address}",
@@ -141,7 +143,9 @@ fun AdminPharmaciesScreen(
                                     text = if (pharmacy.isVerified) "Verified" else "Pending Review",
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = if (pharmacy.isVerified) Color(0xFF15803D) else Color(0xFFB45309)
+                                    color = if (pharmacy.isVerified) Color(0xFF15803D) else Color(0xFFB45309),
+                                    maxLines = 1,
+                                    softWrap = false
                                 )
                             }
                         }

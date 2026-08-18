@@ -122,7 +122,7 @@ fun PharmacyInventoryScreen(
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "Add", modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Add Medicine", fontSize = 12.sp)
+                    Text("Add Medicine", fontSize = 12.sp, maxLines = 1, softWrap = false)
                 }
             }
         }
@@ -200,7 +200,9 @@ fun PharmacyInventoryScreen(
                                 Text(
                                     text = med.name,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 15.sp
+                                    fontSize = 15.sp,
+                                    maxLines = 1,
+                                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                                 )
                                 Text(
                                     text = "Generic: ${med.genericName} • ${med.strength}",

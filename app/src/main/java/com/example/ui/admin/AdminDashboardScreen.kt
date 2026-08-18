@@ -37,7 +37,8 @@ fun AdminDashboardScreen(
         // Admin Portal Banner
         item {
             Card(
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF0F172A)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFEFF6FF)),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFBFDBFE)),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -56,24 +57,25 @@ fun AdminDashboardScreen(
                                 text = "STATE HEALTH MONITORING PORTAL",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF60A5FA),
+                                color = MediBluePrimary,
                                 letterSpacing = 1.sp
                             )
                             Text(
                                 text = "Uttar Pradesh Health Dept",
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.White
+                                color = Color(0xFF1F2937)
                             )
                             Text(
                                 text = "Lucknow District Command Center",
                                 fontSize = 12.sp,
-                                color = Color.White.copy(alpha = 0.8f)
+                                color = Color(0xFF6B7280)
                             )
                         }
 
                         Surface(
-                            color = Color(0xFF1E293B),
+                            color = MediBluePrimary,
+                            contentColor = Color.White,
                             shape = RoundedCornerShape(20.dp)
                         ) {
                             Row(
@@ -83,7 +85,7 @@ fun AdminDashboardScreen(
                                 Icon(
                                     imageVector = Icons.Default.AdminPanelSettings,
                                     contentDescription = "Admin",
-                                    tint = Color(0xFF60A5FA),
+                                    tint = Color.White,
                                     modifier = Modifier.size(14.dp)
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
@@ -165,14 +167,14 @@ fun AdminDashboardScreen(
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text("Pharmacies", fontSize = 12.sp)
+                        Text("Pharmacies", fontSize = 12.sp, maxLines = 1, softWrap = false)
                     }
                     OutlinedButton(
                         onClick = onNavigateInventory,
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text("Inventory", fontSize = 12.sp)
+                        Text("Inventory", fontSize = 12.sp, maxLines = 1, softWrap = false)
                     }
                 }
                 Row(
@@ -185,7 +187,7 @@ fun AdminDashboardScreen(
                             shape = RoundedCornerShape(10.dp),
                             modifier = Modifier.weight(1f)
                         ) {
-                            Text("Alternatives", fontSize = 12.sp)
+                            Text("Alternatives", fontSize = 12.sp, maxLines = 1, softWrap = false)
                         }
                     }
                     Button(
@@ -194,7 +196,7 @@ fun AdminDashboardScreen(
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.weight(1f)
                     ) {
-                        Text("Analytics", fontSize = 12.sp)
+                        Text("Analytics", fontSize = 12.sp, maxLines = 1, softWrap = false)
                     }
                 }
             }

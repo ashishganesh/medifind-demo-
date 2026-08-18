@@ -53,10 +53,12 @@ fun SihDemoBanner(
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = "SIH 2024 DEMO MODE",
+                        text = "SIH 2026 DEMO MODE",
                         fontWeight = FontWeight.Bold,
                         fontSize = 12.sp,
-                        color = Color(0xFFFDE047)
+                        color = Color(0xFFFDE047),
+                        maxLines = 1,
+                        softWrap = false
                     )
                 }
 
@@ -108,25 +110,28 @@ fun SihDemoBanner(
             ) {
                 UserRole.entries.forEach { role ->
                     val isSelected = currentRole == role
-                    FilterChip(
-                        selected = isSelected,
+                    Surface(
                         onClick = { onRoleSelected(role) },
-                        label = {
-                            Text(
-                                text = role.title,
-                                fontSize = 11.sp,
-                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                            )
-                        },
-                        colors = FilterChipDefaults.filterChipColors(
-                            containerColor = Color.White.copy(alpha = 0.15f),
-                            labelColor = Color.White,
-                            selectedContainerColor = Color.White,
-                            selectedLabelColor = MediBluePrimary
-                        ),
-                        border = null,
+                        color = if (isSelected) Color.White else Color.White.copy(alpha = 0.15f),
+                        shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.weight(1f)
-                    )
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 6.dp, horizontal = 4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = role.shortTitle,
+                                fontSize = 11.sp,
+                                fontWeight = if (isSelected) FontWeight.ExtraBold else FontWeight.Medium,
+                                color = if (isSelected) MediBluePrimary else Color.White,
+                                maxLines = 1,
+                                softWrap = false
+                            )
+                        }
+                    }
                 }
             }
         }

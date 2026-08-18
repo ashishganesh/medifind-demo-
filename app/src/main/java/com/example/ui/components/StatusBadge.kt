@@ -70,7 +70,9 @@ fun StatusBadge(
                 text = text,
                 color = textColor,
                 fontSize = 11.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                softWrap = false
             )
         }
     }

@@ -69,7 +69,9 @@ fun AlternativeVerificationBadge(
                 text = label,
                 color = textColor,
                 fontWeight = FontWeight.Bold,
-                fontSize = 11.sp
+                fontSize = 11.sp,
+                maxLines = 1,
+                softWrap = false
             )
         }
     }

@@ -60,7 +60,10 @@ fun PharmacyCard(
                         text = pharmacy.name,
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
                     )
                     if (pharmacy.isVerified) {
                         Surface(
@@ -82,7 +85,9 @@ fun PharmacyCard(
                                     text = "MediFind Verified",
                                     fontSize = 9.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF15803D)
+                                    color = Color(0xFF15803D),
+                                    maxLines = 1,
+                                    softWrap = false
                                 )
                             }
                         }
@@ -96,7 +101,9 @@ fun PharmacyCard(
                                 fontSize = 9.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 color = Color(0xFF64748B),
-                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp),
+                                maxLines = 1,
+                                softWrap = false
                             )
                         }
                     }
@@ -200,7 +207,7 @@ fun PharmacyCard(
                     shape = RoundedCornerShape(8.dp),
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text("View Inventory", fontSize = 12.sp)
+                    Text("View Inventory", fontSize = 12.sp, maxLines = 1, softWrap = false)
                 }
 
                 Button(
@@ -214,7 +221,7 @@ fun PharmacyCard(
                         modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Directions", fontSize = 12.sp)
+                    Text("Directions", fontSize = 12.sp, maxLines = 1, softWrap = false)
                 }
             }
         }
